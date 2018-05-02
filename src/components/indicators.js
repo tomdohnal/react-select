@@ -2,7 +2,6 @@
 import React, { type ElementType } from 'react';
 import { injectGlobal } from 'emotion';
 
-import { A11yText } from '../primitives';
 import { colors, spacing } from '../theme';
 import { type CommonProps } from '../types';
 
@@ -184,7 +183,6 @@ export const LoadingIndicator = (props: LoadingIconProps) => {
       <LoadingDot color={color} delay={0} offset={isRtl} />
       <LoadingDot color={color} delay={160} offset />
       <LoadingDot color={color} delay={320} offset={!isRtl} />
-      <A11yText>Loading</A11yText>
     </div>
   );
 };
