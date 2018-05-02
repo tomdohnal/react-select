@@ -336,7 +336,7 @@ export const MenuList = (props: MenuListComponentProps) => {
     <Div
       className={cx('menu-list', { isMulti })}
       css={getStyles('menuList', props)}
-      ref={innerRef}
+      innerRef={innerRef}
     >
       {children}
     </Div>

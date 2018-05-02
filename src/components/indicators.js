@@ -107,10 +107,9 @@ export const indicatorSeparatorCSS = ({ isDisabled }: SeparatorState) => ({
 });
 
 export const IndicatorSeparator = (props: IndicatorProps) => {
-  const { cx, getStyles, innerProps } = props;
+  const { cx, getStyles } = props;
   return (
     <span
-      {...innerProps}
       css={getStyles('indicatorSeparator', props)}
       className={cx('indicator-separator')}
     />
@@ -168,12 +167,19 @@ injectGlobal`@keyframes ${keyframesName} {
   40% { opacity: 1; }
 };`;
 
-export type LoadingIconProps = IndicatorProps & {
+export type LoadingIconProps = {
+  /** Props that will be passed on to the children. */
+  innerProps: any,
+  /** The focused state of the select. */
+  isFocused: boolean,
+  /** Whether the text is right to left */
+  isRtl: boolean,
+} & CommonProps & {
   /** Set size of the container. */
   size: number,
 };
 export const LoadingIndicator = (props: LoadingIconProps) => {
-  const { cx, getStyles, innerProps, isFocused, isRtl } = props;
+  const { cx, getStyles, isFocused, isRtl, innerProps } = props;
   const color = isFocused ? colors.text : colors.neutral20;
 
   return (
