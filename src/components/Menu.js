@@ -316,13 +316,8 @@ type MenuListState = {
 export type MenuListProps = {
   /** The children to be rendered. */
   children: Node,
-  /** Props to be passed to the wrapper component. */
-  innerProps: {
-    'aria-multiselectable': boolean,
-    id: string,
-    innerRef: InnerRef,
-    role: 'listbox',
-  },
+  /** Inner ref to DOM Node */
+  innerRef: InnerRef,
 };
 export type MenuListComponentProps = CommonProps &
   MenuListProps &
@@ -336,12 +331,12 @@ export const menuListCSS = () => ({
   WebkitOverflowScrolling: 'touch',
 });
 export const MenuList = (props: MenuListComponentProps) => {
-  const { children, cx, getStyles, isMulti, innerProps } = props;
+  const { children, cx, getStyles, isMulti, innerRef } = props;
   return (
     <Div
       className={cx('menu-list', { isMulti })}
       css={getStyles('menuList', props)}
-      {...innerProps}
+      ref={innerRef}
     >
       {children}
     </Div>

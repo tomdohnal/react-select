@@ -56,8 +56,6 @@ type FormatOptionLabelMeta = {
 };
 
 export type Props = {
-  /* HTML ID(s) of element(s) that should be used to describe this input (for assistive tech) */
-  'aria-describedby'?: string,
   /* Aria label (for assistive tech) */
   'aria-label'?: string,
   /* HTML ID of an element that should be used as the label (for assistive tech) */
@@ -896,7 +894,6 @@ export default class Select extends Component<Props, State> {
 
       return {
         innerProps: {
-          'aria-selected': isSelected,
           id: optionId,
           onClick: onSelect,
           onMouseMove: onHover,
@@ -1099,7 +1096,6 @@ export default class Select extends Component<Props, State> {
     const innerProps = {
       onMouseDown: this.onClearIndicatorMouseDown,
       onTouchEnd: this.onClearIndicatorTouchEnd,
-      role: 'button',
     };
 
     return (
@@ -1190,7 +1186,6 @@ export default class Select extends Component<Props, State> {
       captureMenuScroll,
       inputValue,
       isLoading,
-      isMulti,
       loadingMessage,
       minMenuHeight,
       maxMenuHeight,
@@ -1285,12 +1280,7 @@ export default class Select extends Component<Props, State> {
           >
             <MenuList
               {...commonProps}
-              innerProps={{
-                'aria-multiselectable': isMulti,
-                id: this.getElementId('listbox'),
-                innerRef: this.onMenuRef,
-                role: 'listbox',
-              }}
+              innerRef={this.onMenuRef}
               isLoading={isLoading}
               maxHeight={maxMenuHeight}
             >
