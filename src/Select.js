@@ -74,6 +74,7 @@ const Select = createClass({
 		inputRenderer: PropTypes.func,        // returns a custom input component
 		instanceId: PropTypes.string,         // set the components instanceId
 		isLoading: PropTypes.bool,            // whether the Select is loading externally or not (such as options being loaded)
+		isOpen: PropTypes.bool,            		// whether the Select should be open
 		joinValues: PropTypes.bool,           // joins multiple values into a single form field with the delimiter (legacy mode)
 		labelKey: PropTypes.string,           // path of the label value in option objects
 		matchPos: PropTypes.string,           // (any|start) match the start or entire string when filtering
@@ -141,6 +142,7 @@ const Select = createClass({
 			ignoreCase: true,
 			inputProps: {},
 			isLoading: false,
+			isOpen: false,
 			joinValues: false,
 			labelKey: 'label',
 			matchPos: 'any',
@@ -239,6 +241,12 @@ const Select = createClass({
 		if (prevProps.disabled !== this.props.disabled) {
 			this.setState({ isFocused: false }); // eslint-disable-line react/no-did-update-set-state
 			this.closeMenu();
+		}
+
+		if (prevProps.isOpen !== this.props.isOpen) {
+			this.setState({ isOpen: this.props.isOpen });
+			
+			if (!this.props.isOpen) this.blurInput();
 		}
 	},
 
